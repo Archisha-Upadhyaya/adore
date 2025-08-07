@@ -3,6 +3,11 @@ import { createClient } from "@supabase/supabase-js"
 import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
 
+// Validate environment variables
+if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+  throw new Error("Missing required Supabase environment variables")
+}
+
 const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!)
 
 export async function POST(request: NextRequest) {

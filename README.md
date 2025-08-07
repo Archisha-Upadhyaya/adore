@@ -1,6 +1,6 @@
-# Rural Access Platform
+# ADORE Platform
 
-A comprehensive web platform connecting rural communities with essential products and services. Built with Next.js, Supabase, and modern web technologies.
+A comprehensive web platform motivating youth for positive action in rural communities. Built with Next.js, Supabase, and modern web technologies.
 
 ## 🚀 Features
 
@@ -11,6 +11,7 @@ A comprehensive web platform connecting rural communities with essential product
 - **User Dashboard**: Profile management and booking history
 - **Contact System**: Contact form with database storage
 - **Service Listings**: Information about available services
+- **Dark Mode**: Full dark mode support with theme switching
 
 ## 🛠️ Tech Stack
 
@@ -25,19 +26,20 @@ A comprehensive web platform connecting rural communities with essential product
 
 1. Clone the repository:
 \`\`\`bash
-git clone https://github.com/yourusername/rural-access-platform.git
-cd rural-access-platform
+git clone https://github.com/Archisha-Upadhyaya/adore.git
+cd adore
 \`\`\`
 
 2. Install dependencies:
 \`\`\`bash
-npm install
+pnpm install
 \`\`\`
 
 3. Set up environment variables:
 Create a \`.env.local\` file in the root directory:
 \`\`\`env
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
 JWT_SECRET=your_jwt_secret_key
 \`\`\`
@@ -48,7 +50,7 @@ JWT_SECRET=your_jwt_secret_key
 
 5. Run the development server:
 \`\`\`bash
-npm run dev
+pnpm dev
 \`\`\`
 
 6. Open [http://localhost:3000](http://localhost:3000) in your browser
@@ -98,6 +100,7 @@ For testing purposes, use these credentials:
 
 \`\`\`env
 NEXT_PUBLIC_SUPABASE_URL=your_production_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_production_supabase_anon_key
 SUPABASE_SERVICE_ROLE_KEY=your_production_service_role_key
 JWT_SECRET=your_strong_jwt_secret
 \`\`\`
@@ -119,23 +122,28 @@ JWT_SECRET=your_strong_jwt_secret
 
 ### User Dashboard
 - Profile management
-- Booking history
+- Real booking history (no dummy data)
 - Edit profile functionality
 - Responsive design
 
+### Booking System
+- Dedicated booking page (/book)
+- Shopping cart functionality
+- Real-time product management
+- User-specific booking tracking
+
 ### Product System
 - Product search and filtering
-- Add to cart functionality
 - Category-based organization
 - Price display and management
+- View-only on landing page, booking on dedicated page
 
 ## 🎨 Design System
 
-### Color Palette [with mode toggle implementation]
-- **Primary**: Black background
-- **Accent**: Deep green (#1f7a1f)
-- **Contrast**: Deep red (#a01c1c)
-- **Text**: White
+### Color Palette
+- **Primary**: Dark theme with green accent (#1f7a1f)
+- **Background**: Dark backgrounds with proper contrast
+- **Text**: Light text for readability
 - **Font**: Inter (system fallback)
 
 ### Components
@@ -143,6 +151,7 @@ JWT_SECRET=your_strong_jwt_secret
 - Consistent spacing and typography
 - Mobile-responsive design
 - Accessible form controls
+- Dark mode as default theme
 
 ## 🔧 API Endpoints
 
@@ -170,8 +179,8 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## 🆘 Support
 
 For support and questions:
-- Email: support@ruralaccess.com
-- Phone: 1-800-RURAL-HELP
+- Email: support@adore.com
+- Phone: 1-800-ADORE-HELP
 - Create an issue on GitHub
 
 ## 🔮 Future Enhancements
