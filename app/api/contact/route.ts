@@ -11,7 +11,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Name, email, and message are required" }, { status: 400 })
     }
 
-    const { data, error } = await supabase.from("contact_submissions").insert([
+    const { error } = await supabase.from("contact_submissions").insert([
       {
         name,
         email,

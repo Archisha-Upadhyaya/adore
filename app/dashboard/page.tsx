@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { useRouter } from "next/navigation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -32,6 +32,20 @@ export default function DashboardPage() {
     phone: "",
   })
 
+  const fetchBookings = useCallback(async () => {
+    try {
+      const response = await fetch(`/api/bookings?userId=${user?.id}`)
+      if (response.ok) {
+        const data = await response.json()
+        setBookings(data)
+      }
+    } catch (error) {
+      console.error("Error fetching bookings:", error)
+    } finally {
+      setLoadingBookings(false)
+    }
+  }, [user?.id])
+
   useEffect(() => {
     if (!loading && !user) {
       router.push("/login")
@@ -45,21 +59,7 @@ export default function DashboardPage() {
       })
       fetchBookings()
     }
-  }, [user, loading, router])
-
-  const fetchBookings = async () => {
-    try {
-      const response = await fetch(`/api/bookings?userId=${user?.id}`)
-      if (response.ok) {
-        const data = await response.json()
-        setBookings(data)
-      }
-    } catch (error) {
-      console.error("Error fetching bookings:", error)
-    } finally {
-      setLoadingBookings(false)
-    }
-  }
+  }, [user, loading, router, fetchBookings])
 
   const handleProfileUpdate = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -83,6 +83,7 @@ export default function DashboardPage() {
         throw new Error("Failed to update profile")
       }
     } catch (error) {
+      console.error("Profile update error:", error)
       toast({
         title: "Error",
         description: "Failed to update profile",

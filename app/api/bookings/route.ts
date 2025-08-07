@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Product not found" }, { status: 404 })
     }
 
-    const { data, error } = await supabase.from("bookings").insert([
+    const { error } = await supabase.from("bookings").insert([
       {
         user_id: userId,
         product_id: productId,

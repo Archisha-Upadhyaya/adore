@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Search, Star, ArrowRight } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 
 interface Product {
   id: number
@@ -91,16 +92,18 @@ export function Products() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProducts.map((product, index) => (
+          {filteredProducts.map((product) => (
             <Card
               key={product.id}
               className="hover-tilt group bg-card/50 backdrop-blur-sm border border-border/50 hover:border-primary/50"
             >
               <CardHeader className="pb-4">
                 <div className="aspect-square bg-muted/50 rounded-lg mb-4 flex items-center justify-center overflow-hidden group-hover:scale-105 transition-transform duration-300">
-                  <img
-                    src={product.image || "/placeholder.svg?height=200&width=200"}
+                  <Image
+                    src={product.image || "/placeholder.svg"}
                     alt={product.name}
+                    width={200}
+                    height={200}
                     className="w-full h-full object-cover rounded-lg"
                   />
                 </div>
@@ -141,7 +144,7 @@ export function Products() {
 
         {filteredProducts.length === 0 && searchTerm && (
           <div className="text-center py-12">
-            <p className="text-muted-foreground text-lg">No products found matching "{searchTerm}"</p>
+            <p className="text-muted-foreground text-lg">No products found matching &ldquo;{searchTerm}&rdquo;</p>
           </div>
         )}
       </div>

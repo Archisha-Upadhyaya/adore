@@ -4,6 +4,7 @@ import type React from "react"
 
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
+import Image from "next/image"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -150,6 +151,7 @@ export default function BookPage() {
         throw new Error("Some bookings failed")
       }
     } catch (error) {
+      console.error("Booking error:", error)
       toast({
         title: "Booking Failed",
         description: "Failed to complete your booking. Please try again.",
@@ -212,9 +214,11 @@ export default function BookPage() {
                   <Card key={product.id} className="hover:shadow-lg transition-shadow">
                     <CardHeader className="pb-4">
                       <div className="aspect-square bg-muted/50 rounded-lg mb-4 flex items-center justify-center overflow-hidden">
-                        <img
-                          src={product.image || "/placeholder.svg?height=200&width=200"}
+                        <Image
+                          src={product.image || "/placeholder.svg"}
                           alt={product.name}
+                          width={200}
+                          height={200}
                           className="w-full h-full object-cover rounded-lg"
                         />
                       </div>
@@ -253,7 +257,7 @@ export default function BookPage() {
 
             {filteredProducts.length === 0 && searchTerm && (
               <div className="text-center py-12">
-                <p className="text-muted-foreground text-lg">No products found matching "{searchTerm}"</p>
+                <p className="text-muted-foreground text-lg">No products found matching &ldquo;{searchTerm}&rdquo;</p>
               </div>
             )}
           </div>
